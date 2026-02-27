@@ -5,6 +5,9 @@ using FinERP.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+
 // Add MudBlazor services
 builder.Services.AddMudServices();
 
@@ -12,6 +15,8 @@ builder.Services.AddMudServices();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(
         builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<PasswordService>();
 
 var app = builder.Build();
 

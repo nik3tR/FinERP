@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "MdK/eJRu58E=",
+  "dgSpecHash": "lEcdde/zbN8=",
   "success": true,
   "projectFilePath": "/workspaces/FinERP/FinERP/FinERP.csproj",
   "expectedPackageFiles": [
     "/home/codespace/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/codespace/.nuget/packages/microsoft.aspnetcore.app.internal.assets/10.0.0/microsoft.aspnetcore.app.internal.assets.10.0.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.aspnetcore.identity/2.3.9/microsoft.aspnetcore.identity.2.3.9.nupkg.sha512",
     "/home/codespace/.nuget/packages/microsoft.build.framework/18.0.2/microsoft.build.framework.18.0.2.nupkg.sha512",
     "/home/codespace/.nuget/packages/microsoft.codeanalysis.analyzers/3.11.0/microsoft.codeanalysis.analyzers.3.11.0.nupkg.sha512",
     "/home/codespace/.nuget/packages/microsoft.codeanalysis.common/5.0.0/microsoft.codeanalysis.common.5.0.0.nupkg.sha512",
@@ -39,5 +40,18 @@
     "/home/codespace/.nuget/packages/system.composition.runtime/9.0.0/system.composition.runtime.9.0.0.nupkg.sha512",
     "/home/codespace/.nuget/packages/system.composition.typedparts/9.0.0/system.composition.typedparts.9.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "message": "PackageReference Microsoft.AspNetCore.Identity will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
+      "projectPath": "/workspaces/FinERP/FinERP/FinERP.csproj",
+      "warningLevel": 1,
+      "filePath": "/workspaces/FinERP/FinERP/FinERP.csproj",
+      "libraryId": "Microsoft.AspNetCore.Identity",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }
