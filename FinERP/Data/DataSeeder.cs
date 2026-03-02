@@ -6,20 +6,33 @@ public static class DataSeeder
 {
     public static void SeedUsers(AppDbContext context)
     {
-        if (!context.Users.Any(u => u.Email == "admin@erp.com"))
+        var passwordService = new PasswordService();
+
+        var usersToSeed = new List<(string Email, string Password, string Role)>
         {
-            var user = new User
+            ("admin@erp.com", "password", "Admin"),
+            ("manager@erp.com", "Manager123!", "Manager"),
+            ("employee1@erp.com", "Employee123!", "Employee"),
+            ("employee2@erp.com", "Employee123!", "Employee")
+        };
+
+        foreach (var (email, password, role) in usersToSeed)
+        {
+            if (!context.Users.Any(u => u.Email == email))
             {
-                Email = "admin@erp.com",
-                PasswordHash = "", // temporary 
-                Role = "Admin"
-            };
+                var user = new User
+                {
+                    Email = email,
+                    PasswordHash = "",
+                    Role = role
+                };
 
-            var passwordService = new PasswordService();
-            user.PasswordHash = passwordService.HashPassword(user, "password");
+                user.PasswordHash = passwordService.HashPassword(user, password);
 
-            context.Users.Add(user);
-            context.SaveChanges();
+                context.Users.Add(user);
+            }
         }
+
+        context.SaveChanges();
     }
 }

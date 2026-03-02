@@ -51,7 +51,9 @@ app.MapRazorComponents<App>()
 
 // Seed admin user
 using var scope = app.Services.CreateScope();
-var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+var factory = scope.ServiceProvider.GetRequiredService<IDbContextFactory<AppDbContext>>();
+using var context = factory.CreateDbContext();
+
 DataSeeder.SeedUsers(context);
 //force $ for any currency formatting
 var cultureInfo = new System.Globalization.CultureInfo("en-US");

@@ -1,8 +1,6 @@
 @page "/login"
 @rendermode InteractiveServer
-
-@using Microsoft.EntityFrameworkCore
-@using FinERP.Security
+@attribute [AllowAnonymous]
 
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
