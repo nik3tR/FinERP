@@ -62,8 +62,8 @@
             {
                 if (AuthenticationStateProvider is FakeAuthStateProvider customProvider)
                 {
-                    customProvider.MarkUserAsAuthenticated(email);
-                    NavigationManager.NavigateTo("/salary");
+                    customProvider.MarkUserAsAuthenticated(email, user.Role);
+                    NavigationManager.NavigateTo("/home"); // for testing purposes, redirect to home after login
                     return;
                 }
             }

@@ -16,19 +16,18 @@ namespace FinERP.Security // Update this to match your project's namespace
         }
 
         // call from login.razor
-        public void MarkUserAsAuthenticated(string email)
+        public void MarkUserAsAuthenticated(string email, string role)
         {
-            // create id badge
-            var identity = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Name, email),
-                new Claim(ClaimTypes.Role, "HR") 
-            }, "FakeAuthentication"); // must add cause blazor
+        var identity = new ClaimsIdentity(new[]
+        {
+            new Claim(ClaimTypes.Name, email),
+            new Claim(ClaimTypes.Role, role)
+        }, "FakeAuthentication");
 
-            _currentUser = new ClaimsPrincipal(identity);
+        _currentUser = new ClaimsPrincipal(identity);
 
-            // broadcast user has changed
-            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_currentUser)));
+        NotifyAuthenticationStateChanged(
+            Task.FromResult(new AuthenticationState(_currentUser)));
         }
     }
 }

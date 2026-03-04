@@ -1,9 +1,11 @@
 @page "/salary"
 @rendermode InteractiveServer
 @using FinERP.Models
-@using Microsoft.EntityFrameworkCore
 @using FinERP.Data
 @using CultureInfo = System.Globalization.CultureInfo
+@attribute [Authorize(Roles = "Admin, Manager")]
+@using Microsoft.AspNetCore.Authorization
+
 @inject IDbContextFactory<FinERP.Data.AppDbContext> DbFactory
 
 <MudText Typo="Typo.h3" GutterBottom="true">Salary Management</MudText>
