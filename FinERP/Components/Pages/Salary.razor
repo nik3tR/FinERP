@@ -6,8 +6,7 @@
 @attribute [Authorize(Roles = "Admin, Manager")]
 @using Microsoft.AspNetCore.Authorization
 
-@inject IDbContextFactory<FinERP.Data.AppDbContext> DbFactory
-
+@inject EmployeeService EmployeeService
 <MudText Typo="Typo.h3" GutterBottom="true">Salary Management</MudText>
 
 <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
@@ -54,9 +53,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        using var context = DbFactory.CreateDbContext();
-        employees = await context.Employees.ToListAsync();
-        StateHasChanged();
+        employees = await EmployeeService.GetEmployeesAsync();
     }
 
     private Func<Employee, string> _cellStyleFunc => x =>

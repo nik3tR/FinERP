@@ -25,8 +25,12 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/login";
     });
+
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<AuthenticationStateProvider, FakeAuthStateProvider>();
+
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped<EmployeeService>();
 
 var app = builder.Build();
 

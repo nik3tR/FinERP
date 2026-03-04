@@ -1,9 +1,8 @@
 @page "/"
 @using MudBlazor
 @using MudBlazor.Charts
-@inject IDbContextFactory<AppDbContext> DbFactory
-
-@inject IDbContextFactory<AppDbContext> DbFactory
+@using FinERP.Models
+@inject EmployeeService EmployeeService
 
 <MudContainer MaxWidth="MaxWidth.False" Class="pa-6">
 
@@ -95,12 +94,11 @@
 
     private string[] _labels = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
     private decimal salarySum;
-
+    private List<Employee> employees = new();
     protected override async Task OnInitializedAsync()
     {
-        using var context = await DbFactory.CreateDbContextAsync();
-        salarySum = await context.Employees
-                                    .SumAsync(x => (decimal)x.SalaryUSD);
+        employees = await EmployeeService.GetEmployeesAsync();
+        salarySum = employees.Sum(e => e.SalaryUSD); // compute total payroll
     }
 
     private List<ChartSeries<double>> _series = new()
